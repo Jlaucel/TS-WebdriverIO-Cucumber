@@ -1,28 +1,16 @@
-import { Given, When, Then } from '@cucumber/cucumber';
-import { expect, $, browser } from '@wdio/globals'
+import { Given, When, Then } from '@wdio/cucumber-framework';
+import { expect } from '@wdio/globals';
+import GooglePage from '../pageobjects/google.page.js';
 
-console.log('--- Cargando Step Definitions ---');
-
-Given('que abro la página de Google', async () => {
-    console.log('Ejecutando: Abrir Google');
-    await browser.url('https://www.google.com');
-    
-    const cookieButton = await $('button=Aceptar todo');
-    if (await cookieButton.isExisting()) {
-        await cookieButton.click();
-    }
+Given('I open the Google page', async () => {
+    await GooglePage.open();
+    await GooglePage.acceptCookiesIfPresent();
 });
 
-When('busco {string}', async (searchText: string) => {
-    console.log(`Ejecutando: Buscar ${searchText}`);
-    const input = await $('[name="q"]');
-    await input.waitForDisplayed();
-    await input.setValue(searchText);
-    await browser.keys('Enter');
+When('I search for {string}', async (searchText: string) => {
+    await GooglePage.search(searchText);
 });
 
-Then('debo ver la pantalla de verificación de tráfico inusual', async () => {
-    console.log('Ejecutando: Validar tráfico inusual');
-    const avisoElement = await $('*=Our systems have detected unusual traffic');
-    await expect(avisoElement).toBeDisplayed();
+Then('I should see the unusual traffic verification screen', async () => {
+    await expect(GooglePage.unusualTrafficMessage).toHaveTextContaining('Our systems have detected unusual traffic');
 });

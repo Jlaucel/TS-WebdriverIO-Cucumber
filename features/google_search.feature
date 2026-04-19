@@ -1,7 +1,6 @@
-# language: es
-Característica: Búsqueda en Google
+Feature: Google Search
 
-  Escenario: Detección de tráfico inusual por parte de Google (Escenario Negativo)
-    Given que abro la página de Google
-    When busco "WebdriverIO Cucumber Allure"
-    Then debo ver la pantalla de verificación de tráfico inusual
+  Scenario: Unusual traffic detection by Google (Negative Scenario)
+    Given I open the Google page
+    When I search for "WebdriverIO Cucumber Allure"
+    Then I should see the unusual traffic verification screen

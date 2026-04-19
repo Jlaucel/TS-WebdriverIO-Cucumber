@@ -1,6 +1,7 @@
 {
     "compilerOptions": {
         "moduleResolution": "node",
+        "ignoreDeprecations": "6.0",
         "types": [
             "node",
             "@wdio/globals/types",
@@ -9,7 +10,10 @@
             "expect-webdriverio"
         ],
         "target": "es2022",
-        "module": "commonjs",
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
+        "rootDir": "./",
+        "outDir": "./dist",
         "esModuleInterop": true,
         "strict": true
     }

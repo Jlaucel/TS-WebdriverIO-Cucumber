@@ -1,15 +1,11 @@
 import type { Options } from '@wdio/types'
 import path from 'node:path'
+import fs from 'node:fs'
+import allure from '@wdio/allure-reporter'
 
-export const config: Options.Testrunner = {
+export const config = {
     runner: 'local',
-    autoCompileOpts: {
-        autoCompile: true,
-        tsNodeOpts: {
-            project: path.join(process.cwd(), 'tsconfig.json'),
-            transpileOnly: true
-        }
-    },
+    logLevel: 'debug',
     specs: [
         path.join(process.cwd(), 'features/**/*.feature')
     ],
@@ -20,25 +16,28 @@ export const config: Options.Testrunner = {
             args: ['headless', 'disable-gpu']
         }
     }],
-    logLevel: 'error',
     bail: 0,
     waitforTimeout: 10000,
     connectionRetryTimeout: 120000,
     connectionRetryCount: 3,
     framework: 'cucumber',
-    reporters: ['spec',['allure', {
+    reporters: ['spec', ['allure', {
         outputDir: 'allure-results',
-        disableWebdriverStepsReporting: true,
+        useCucumberStepReporter: true,
         disableWebdriverScreenshotsReporting: false,
+        disableWebdriverStepsReporting: true
     }]],
     cucumberOpts: {
-        // En WDIO v9 con ESM, preferimos usar 'import' con rutas absolutas
-        import: [path.join(process.cwd(), 'features/step-definitions/*.ts')],
+        require: ['./features/step-definitions/*.ts'],
         timeout: 60000
     },
-    afterStep: async function (step, scenario, result, context) {
-        if (!result.passed) {
-            await browser.takeScreenshot();
+    afterStep: async function () {
+        const screenshot = await browser.takeScreenshot();
+        allure.addAttachment('Screenshot', Buffer.from(screenshot, 'base64'), 'image/png');
+    },
+    onPrepare: function () {
+        if (fs.existsSync('allure-results')) {
+            fs.rmSync('allure-results', { recursive: true, force: true });
         }
     }
 }
