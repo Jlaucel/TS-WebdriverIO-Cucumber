@@ -28,3 +28,7 @@ This repository demonstrates a robust E2E testing framework using **WebdriverIO*
 
 ## Scenario: Unusual Traffic Detection
 This project includes a negative test case that validates Google's "Unusual Traffic" detection screen, demonstrating the framework's ability to handle anti-bot screens and validate negative outcomes.
+
+## Automatización asistida por IA
+
+La [guía de pruebas](docs/qa.md) reúne las prácticas ISTQB de diseño y gestión de riesgos, las skills de Codex y los hooks para orientar el diagnóstico. Ejecuta `npm run qa:check` para validar Gherkin y trazabilidad o `npm run qa:triage` después de una ejecución con resultados Allure.

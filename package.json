@@ -4,7 +4,9 @@
   "main": "index.js",
   "scripts": {
     "test": "npx wdio run wdio.conf.ts",
-    "report": "allure serve allure-results"
+    "report": "allure serve allure-results",
+    "qa:check": "node scripts/qa/check.mjs",
+    "qa:triage": "node scripts/qa/triage.mjs"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +14,8 @@
   "description": "",
   "devDependencies": {
     "@cucumber/cucumber": "^8.11.1",
+    "@cucumber/gherkin": "29.0.0",
+    "@cucumber/messages": "21.0.1",
     "@types/node": "^25.6.0",
     "@wdio/allure-reporter": "^8.43.0",
     "@wdio/cli": "^8.46.0",
