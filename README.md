@@ -1,2 +1,38 @@
-# TS-WebdriverIO-Cucumber
-WebdriverIO + Cucumber + Allure (TS): Premium E2E testing framework using BDD for clarity and native WDIO integration for performance. Includes TypeScript for reliability and Allure for advanced reporting with failure screenshots. Validates complex negative scenarios like Google's anti-bot screens, ensuring high-quality test coverage.
+# WebdriverIO + Cucumber + Allure (TypeScript)
+
+This repository demonstrates a robust E2E testing framework using **WebdriverIO** with **Cucumber (BDD)** and **Allure Reports**, fully implemented in **TypeScript**.
+
+## Project Advantages
+
+- **Standardized BDD**: Using Gherkin for clear, human-readable test scenarios.
+- **Native WebdriverIO integration**: Leveraging the powerful WDIO test runner and its vast ecosystem of plugins.
+- **Advanced Reporting**: Comprehensive Allure reports with step-by-step execution and screenshots on failure.
+- **Type Safety**: Built with TypeScript to ensure maintainable and error-free code.
+
+## How to Run
+
+1. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+2. **Execute tests**:
+   ```bash
+   npm run test
+   ```
+
+3. **Generate Allure report**:
+   ```bash
+   npm run report
+   ```
+
+## Scenario: Unusual Traffic Detection
+This project includes a negative test case that validates Google's "Unusual Traffic" detection screen, demonstrating the framework's ability to handle anti-bot screens and validate negative outcomes.
+
+## Automatización asistida por IA
+
+La [guía de pruebas](docs/qa.md) reúne las prácticas ISTQB de diseño y gestión de riesgos, las skills de Codex y los hooks para orientar el diagnóstico. Ejecuta `npm run qa:check` para validar Gherkin y trazabilidad o `npm run qa:triage` después de una ejecución con resultados Allure.
+
+## Conexiones con herramientas de QA
+
+La [guía de conexiones](docs/integraciones-qa.md) explica cómo configurar Figma, Jira, Zephyr y Slack desde tu cliente de IA y cómo usar la skill de QA del repositorio para relacionar requisitos, pruebas y evidencias.
